@@ -1,63 +1,11 @@
-# Plan: prj-8176-task-mugucf4m
+# Plan: task-mugucf4m
 
 **Project:** `PRJ-6947`  
 **Task ID:** `task-mugucf4m`  
 **Repo:** `prj-8176-task-mugucf4m`  
-
-## Summary
-
-Декомпозиция задачи на создание Telegram-бота для ежедневных отчётов. 5 последовательных подзадач: инициализация проекта, реализация ядра бота, хранение и логика отчётов, расписание и уведомления, финальная сборка и тестирование.
+**Progress:** 0/0 subtasks done
 
 ## Subtasks
-
-### 1. Инициализировать структуру репозитория
-
-- **ID:** `sub-1`
-- **Profile:** `20razrab1`
-- **Tester:** `TBD`
-- **Status:** `pending`
-- **Description:** Создать репо prj-8176-task-mugucf4m: bot.py (точка входа), requirements.txt (python-telegram-bot, apscheduler, sqlalchemy), .env.example, README.md с инструкцией запуска и описанием переменных окружения.
-- **Test plan:** git clone проходит чисто; pip install -r requirements.txt завершается без ошибок; python bot.py --help не падает; .env.example содержит TELEGRAM_BOT_TOKEN и DATABASE_URL.
-
-### 2. Реализовать ядро Telegram-бота
-
-- **ID:** `sub-2`
-- **Profile:** `20razrab1`
-- **Tester:** `TBD`
-- **Status:** `pending`
-- **Description:** Подключить python-telegram-bot, реализовать ConversationHandler для /start, /help, диалог ввода отчёта (текст + опциональная категория). Хендлеры принимают и сохраняют черновик отчёта. Inline-кнопки: Сохранить / Отменить / Отредактировать.
-- **Test plan:** Запуск с тестовым токеном и эхо-ботом отвечает на /start и /help; диалог ввода отчёта проходит все шаги без исключений; нажатие Сохранить возвращает подтверждение, Отменить сбрасывает состояние.
-- **Dependencies:** `sub-1`
-
-### 3. Добавить хранилище и модели данных
-
-- **ID:** `sub-3`
-- **Profile:** `30razrab2`
-- **Tester:** `TBD`
-- **Status:** `pending`
-- **Description:** SQLAlchemy-модели: User (telegram_id, username, timezone), Report (user_id, date, text, category, created_at). Миграция через Alembic или create_all. Запросы: получить отчёты за дату, за период, последний отчёт пользователя.
-- **Test plan:** pytest-тесты: создание пользователя, сохранение отчёта, выборка за сегодня возвращает корректные записи; тест с пустой БД проходит; повторный запуск не дублирует схему.
-- **Dependencies:** `sub-2`
-
-### 4. Реализовать расписание напоминаний и команду /report
-
-- **ID:** `sub-4`
-- **Profile:** `30razrab2`
-- **Tester:** `TBD`
-- **Status:** `pending`
-- **Description:** APScheduler в одном процессе с ботом: ежедневно в 09:00 по таймзоне пользователя шлёт напоминание сдать отчёт. Команда /report за сегодня выводит все отчёты пользователя. Команда /stats за неделю.
-- **Test plan:** Мокать datetime в тестах: срабатывание job'а в указанное время вызывает bot.send_message с правильным chat_id; /report возвращает текст и количество записей; /stats агрегирует по дням.
-- **Dependencies:** `sub-3`
-
-### 5. Интеграционное тестирование и финальная сборка
-
-- **ID:** `sub-5`
-- **Profile:** `30razrab2`
-- **Tester:** `TBD`
-- **Status:** `pending`
-- **Description:** Сквозной тест: пользователь стартует бота, получает напоминание, вводит отчёт, сохраняет, вызывает /report. README обновлён инструкцией по запуску через docker-compose (опционально). Линтер flake8 + pytest --cov ≥70%.
-- **Test plan:** pytest -v проходит все тесты зелёным; coverage отчёт показывает ≥70%; docker-compose up поднимает бота с Postgres; ручная проверка: в реальном Telegram бот отвечает на /start в течение 2 секунд.
-- **Dependencies:** `sub-4`
 
 
 ---
